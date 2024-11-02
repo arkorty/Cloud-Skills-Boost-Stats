@@ -104,7 +104,7 @@ export default function Home() {
                 placeholder="Search for a student..."
                 value={searchQuery}
                 onChange={handleSearchChange}
-                className="text-google-text bg-secondary"
+                className="text-primary bg-secondary"
               />
               <p className="text-sm text-primary/80 mr-1">
                 Showing {indexOfFirstCard + 1}-
