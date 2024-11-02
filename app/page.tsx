@@ -71,7 +71,7 @@ export default function Home() {
   };
 
   return (
-    <div className="container mx-auto py-4 px-2">
+    <div className="container mx-auto py-4 px-4">
       <div className="flex flex-col gap-6">
         <div className="flex flex-col sm:flex-row items-start justify-between gap-4">
           <div className="w-full text-google-text p-6 rounded-lg shadow-xl border border-gray-400 flex justify-between items-center">
