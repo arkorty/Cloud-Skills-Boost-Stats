@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import LoadStudents from "./data/load-students";
 import Image from "next/image";
+import { Input } from "@/components/ui/input";
 import { StudentCard } from "@/components/ui/student-card";
 import { Button } from "@/components/ui/button";
 import { ChevronLeft, ChevronRight } from "lucide-react";
@@ -88,18 +89,18 @@ export default function Home() {
               </h1>
             </div>
             <div className="flex flex-col items-end space-y-2">
-              <input
+              <Input
                 id="student-search"
                 type="text"
                 placeholder="Search for a student..."
                 value={searchQuery}
                 onChange={handleSearchChange}
-                className="p-2 rounded text-google-text bg-secondary"
+                className="text-google-text bg-secondary"
               />
               <p className="text-sm text-google-text/80 mr-1">
                 Showing {indexOfFirstCard + 1}-
                 {Math.min(indexOfLastCard, filteredStudents.length)} of{" "}
-                {filteredStudents.length} students
+                {filteredStudents.length}
               </p>
             </div>
           </div>
