@@ -36,7 +36,7 @@ BoostStats is a student progress dashboard built with Next.js 15, designed to di
 
    ```bash
    git clone https://github.com/arkorty/BoostStats.git
-   cd booststats
+   cd BoostStats
    ```
 
 2. Install dependencies:
