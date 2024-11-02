@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import LoadStudents from "./data/load-students";
+import Image from "next/image";
 import { StudentCard } from "@/components/ui/student-card";
 import { Button } from "@/components/ui/button";
 import { ChevronLeft, ChevronRight } from "lucide-react";
@@ -71,13 +72,21 @@ export default function Home() {
 
   return (
     <div className="container mx-auto py-4 px-2">
-      <div className="flex flex-col gap-8">
+      <div className="flex flex-col gap-6">
         <div className="flex flex-col sm:flex-row items-start justify-between gap-4">
-          <div className="w-full bg-blue-600 text-white p-6 rounded-lg shadow-lg flex justify-between items-center">
-            <h1 className="text-5xl md:text-4xl font-bold tracking-wide mb-0">
-              <span className="hidden sm:inline">BoostStats</span>
-              <span className="inline sm:hidden">BS</span>
-            </h1>
+          <div className="w-full text-google-text p-6 rounded-lg shadow-xl border border-gray-400 flex justify-between items-center">
+            <div className="flex items-center">
+              <Image
+                src="/logo.png"
+                alt="BoostStats Logo"
+                className="mr-4"
+                width={72}
+                height={72}
+              />
+              <h1 className="text-5xl md:text-4xl font-bold tracking-wide hidden sm:inline mb-0">
+                BoostStats
+              </h1>
+            </div>
             <div className="flex flex-col items-end space-y-2">
               <input
                 id="student-search"
@@ -87,7 +96,7 @@ export default function Home() {
                 onChange={handleSearchChange}
                 className="p-2 rounded text-google-text bg-secondary"
               />
-              <p className="text-sm text-white/80 mr-1">
+              <p className="text-sm text-google-text/80 mr-1">
                 Showing {indexOfFirstCard + 1}-
                 {Math.min(indexOfLastCard, filteredStudents.length)} of{" "}
                 {filteredStudents.length} students

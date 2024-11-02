@@ -18,7 +18,7 @@ export const StudentCard = ({ student }: { student: Student }) => {
       : 0;
 
   return (
-    <Card className="w-full transition duration-300 ease-in-out transform lg:hover:scale-105 lg:mb-3">
+    <Card className="w-full transition duration-300 ease-in-out transform lg:hover:scale-105 lg:mb-3 border border-gray-400">
       <CardHeader className="flex flex-row items-center gap-4">
         <Link href={student.profile_url}>
           <Avatar className="h-16 w-16">
