@@ -18,7 +18,7 @@ export const StudentCard = ({ student }: { student: Student }) => {
       : 0;
 
   return (
-    <Card className="w-full transition duration-300 ease-in-out transform hover:scale-105 mb-3">
+    <Card className="w-full transition duration-300 ease-in-out transform lg:hover:scale-105 lg:mb-3">
       <CardHeader className="flex flex-row items-center gap-4">
         <Link href={student.profile_url}>
           <Avatar className="h-16 w-16">
@@ -108,7 +108,7 @@ export const StudentCard = ({ student }: { student: Student }) => {
 
           <TabsContent value="completed" className="mt-4">
             <div className="space-y-2">
-              <ScrollArea className="h-64">
+              <ScrollArea className="h-48">
                 {(student.completed_assignments?.length ?? 0) > 0 ? (
                   student.completed_assignments?.map((assignment, index) => (
                     <div
@@ -133,7 +133,7 @@ export const StudentCard = ({ student }: { student: Student }) => {
 
           <TabsContent value="in-progress" className="mt-4">
             <div className="space-y-2">
-              <ScrollArea className="h-64">
+              <ScrollArea className="h-48">
                 {(student.incomplete_assignments?.length ?? 0) > 0 ? (
                   student.incomplete_assignments?.map((assignment, index) => (
                     <div
