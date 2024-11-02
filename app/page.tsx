@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { students } from "./data/students";
+import LoadStudents from "./data/load-students";
 import { StudentCard } from "@/components/ui/student-card";
 import { Button } from "@/components/ui/button";
 import { ChevronLeft, ChevronRight } from "lucide-react";
@@ -10,9 +10,10 @@ export default function Home() {
   const [currentPage, setCurrentPage] = useState(1);
   const [searchQuery, setSearchQuery] = useState("");
   const cardsPerPage = 12;
+  const students = LoadStudents();
 
   const filteredStudents = students.filter((student) =>
-    student.name.toLowerCase().includes(searchQuery.toLowerCase()),
+    student.name.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
   const totalPages = Math.ceil(filteredStudents.length / cardsPerPage);
@@ -21,7 +22,7 @@ export default function Home() {
   const indexOfFirstCard = indexOfLastCard - cardsPerPage;
   const currentCards = filteredStudents.slice(
     indexOfFirstCard,
-    indexOfLastCard,
+    indexOfLastCard
   );
 
   const handlePageChange = (pageNumber: number) => {
