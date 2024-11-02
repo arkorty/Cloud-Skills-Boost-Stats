@@ -6,6 +6,6 @@ export interface Student {
   incomplete_assignments_count: number;
   completed_assignments_count: number;
   badges: string[] | null;
-  incomplete_assignments: string[];
+  incomplete_assignments: string[] | null;
   completed_assignments: string[] | null;
 }

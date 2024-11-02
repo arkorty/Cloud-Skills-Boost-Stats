@@ -16,16 +16,12 @@ export const StudentCard = ({ student }: { student: Student }) => {
       ? (student.completed_assignments_count / totalAssignments) * 100
       : 0;
 
-  const googleColors = ["blue", "red", "yellow", "green"];
-
   return (
-    <Card className="w-full">
+    <Card className="w-full transition duration-300 ease-in-out transform hover:scale-105 mb-3">
       <CardHeader className="flex flex-row items-center gap-4">
         <Avatar className="h-16 w-16">
           <div
-            className={`bg-google-${
-              googleColors[Math.floor(Math.random() * googleColors.length)]
-            } text-2xl text-primary-foreground rounded-full w-full h-full flex items-center justify-center`}
+            className={`bg-google-blue text-2xl text-primary-foreground rounded-full w-full h-full flex items-center justify-center`}
           >
             {student.name
               .split(" ")
@@ -33,17 +29,17 @@ export const StudentCard = ({ student }: { student: Student }) => {
               .join("")}
           </div>
         </Avatar>
-        <div className="flex-1">
-          <CardTitle className="text-xl">{student.name}</CardTitle>
-          <div className="flex items-center gap-2 text-sm text-muted-foreground mt-1">
-            <Mail className="h-4 w-4" />
-            <span>{student.email}</span>
+        <div className="flex-1 min-w-0">
+          <CardTitle className="text-lg">{student.name}</CardTitle>
+          <div className="flex items-center gap-2 text-sm text-muted-foreground mt-1 overflow-hidden">
+            <Mail className="h-4 w-4 flex-shrink-0" />
+            <span className="truncate">{student.email}</span>
           </div>
         </div>
         <div className="flex items-center gap-2">
-          <Badge className="p-2 gap-2 bg-google-green">
-            <Trophy className="h-5 w-5 text-google-text" />
-            <span className="font-semibold text-google-text">
+          <Badge className="p-2 gap-2 bg-google-green hover:bg-google-green/80">
+            <Trophy className="h-5 w-5 text-google-background" />
+            <span className="font-semibold text-google-background">
               {student.badges_count}
             </span>
           </Badge>
@@ -64,7 +60,7 @@ export const StudentCard = ({ student }: { student: Student }) => {
         </div>
 
         <div className="mb-6">
-          <div className="flex items-center gap-2 mb-3">
+          <div className="flex items-center gap-2 mb-4">
             <Trophy className="h-4 w-4 text-google-yellow" />
             <h4 className="font-medium">Earned Badges</h4>
           </div>
@@ -106,11 +102,20 @@ export const StudentCard = ({ student }: { student: Student }) => {
           <TabsContent value="completed" className="mt-4">
             <div className="space-y-2">
               <ScrollArea className="h-64">
-                {student.completed_assignments?.map((assignment, index) => (
-                  <div key={index} className="py-1 text-sm">
-                    {assignment}
-                  </div>
-                )) || (
+                {(student.completed_assignments?.length ?? 0) > 0 ? (
+                  student.completed_assignments?.map((assignment, index) => (
+                    <div
+                      key={index}
+                      className={`py-1 text-sm ${
+                        index < (student.completed_assignments?.length ?? 1) - 1
+                          ? "border-b border-gray-300"
+                          : ""
+                      }`}
+                    >
+                      {assignment}
+                    </div>
+                  ))
+                ) : (
                   <span className="text-sm text-muted-foreground">
                     No assignments completed yet
                   </span>
@@ -122,14 +127,21 @@ export const StudentCard = ({ student }: { student: Student }) => {
           <TabsContent value="in-progress" className="mt-4">
             <div className="space-y-2">
               <ScrollArea className="h-64">
-                {student.incomplete_assignments.map((assignment, index) => (
-                  <div
-                    key={index}
-                    className="py-1 text-sm text-muted-foreground"
-                  >
-                    {assignment}
-                  </div>
-                )) || (
+                {(student.incomplete_assignments?.length ?? 0) > 0 ? (
+                  student.incomplete_assignments?.map((assignment, index) => (
+                    <div
+                      key={index}
+                      className={`py-1 text-sm ${
+                        index <
+                        (student.incomplete_assignments?.length ?? 1) - 1
+                          ? "border-b border-gray-300"
+                          : ""
+                      }`}
+                    >
+                      {assignment}
+                    </div>
+                  ))
+                ) : (
                   <span className="text-sm text-muted-foreground">
                     No incomplete assignments
                   </span>
