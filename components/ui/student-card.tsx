@@ -1,4 +1,5 @@
 import React from "react";
+import Link from "next/link";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
@@ -19,30 +20,36 @@ export const StudentCard = ({ student }: { student: Student }) => {
   return (
     <Card className="w-full transition duration-300 ease-in-out transform hover:scale-105 mb-3">
       <CardHeader className="flex flex-row items-center gap-4">
-        <Avatar className="h-16 w-16">
-          <div
-            className={`bg-google-blue text-2xl text-primary-foreground rounded-full w-full h-full flex items-center justify-center`}
-          >
-            {student.name
-              .split(" ")
-              .map((n) => n[0])
-              .join("")}
-          </div>
-        </Avatar>
+        <Link href={student.profile_url}>
+          <Avatar className="h-16 w-16">
+            <div
+              className={`bg-google-blue text-2xl text-primary-foreground rounded-full w-full h-full flex items-center justify-center`}
+            >
+              {student.name
+                .split(" ")
+                .map((n) => n[0])
+                .join("")}
+            </div>
+          </Avatar>
+        </Link>
         <div className="flex-1 min-w-0">
-          <CardTitle className="text-lg">{student.name}</CardTitle>
+          <Link href={student.profile_url}>
+            <CardTitle className="text-lg">{student.name}</CardTitle>
+          </Link>
           <div className="flex items-center gap-2 text-sm text-muted-foreground mt-1 overflow-hidden">
             <Mail className="h-4 w-4 flex-shrink-0" />
             <span className="truncate">{student.email}</span>
           </div>
         </div>
         <div className="flex items-center gap-2">
-          <Badge className="p-2 gap-2 bg-google-green hover:bg-google-green/80">
-            <Trophy className="h-5 w-5 text-google-background" />
-            <span className="font-semibold text-google-background">
-              {student.badges_count}
-            </span>
-          </Badge>
+          <Link href={student.profile_url}>
+            <Badge className="p-2 gap-2 bg-google-green hover:bg-google-green/80">
+              <Trophy className="h-5 w-5 text-google-background" />
+              <span className="font-semibold text-google-background">
+                {student.badges_count}
+              </span>
+            </Badge>
+          </Link>
         </div>
       </CardHeader>
 
