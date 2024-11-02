@@ -1,16 +1,17 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import LoadStudents from "./data/load-students";
 import Image from "next/image";
 import { Input } from "@/components/ui/input";
 import { StudentCard } from "@/components/ui/student-card";
 import { Button } from "@/components/ui/button";
-import { ChevronLeft, ChevronRight } from "lucide-react";
+import { ChevronLeft, ChevronRight, Moon, Sun } from "lucide-react";
 
 export default function Home() {
   const [currentPage, setCurrentPage] = useState(1);
   const [searchQuery, setSearchQuery] = useState("");
+  const [darkMode, setDarkMode] = useState(false);
   const cardsPerPage = 12;
   const students = LoadStudents();
 
@@ -29,7 +30,6 @@ export default function Home() {
 
   const handlePageChange = (pageNumber: number) => {
     setCurrentPage(pageNumber);
-
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
@@ -71,6 +71,15 @@ export default function Home() {
     setCurrentPage(1);
   };
 
+  const toggleDarkMode = () => {
+    setDarkMode((prevMode) => !prevMode);
+  };
+
+  useEffect(() => {
+    // Apply dark mode class to the body element
+    document.body.classList.toggle("dark", darkMode);
+  }, [darkMode]);
+
   return (
     <div className="container mx-auto py-4 px-4">
       <div className="flex flex-col gap-6">
@@ -84,7 +93,7 @@ export default function Home() {
                 width={72}
                 height={72}
               />
-              <h1 className="text-5xl md:text-4xl font-bold tracking-wide hidden sm:inline mb-0">
+              <h1 className="text-5xl md:text-4xl text-primary font-bold tracking-wide hidden sm:inline mb-0">
                 BoostStats
               </h1>
             </div>
@@ -97,7 +106,7 @@ export default function Home() {
                 onChange={handleSearchChange}
                 className="text-google-text bg-secondary"
               />
-              <p className="text-sm text-google-text/80 mr-1">
+              <p className="text-sm text-primary/80 mr-1">
                 Showing {indexOfFirstCard + 1}-
                 {Math.min(indexOfLastCard, filteredStudents.length)} of{" "}
                 {filteredStudents.length}
@@ -152,6 +161,21 @@ export default function Home() {
             </Button>
           </div>
         )}
+
+        <Button
+          onClick={toggleDarkMode}
+          className={
+            darkMode
+              ? "fixed bottom-4 right-4 h-8 w-8 rounded-full shadow-lg flex items-center justify-center bg-primary hover:bg-primary/90"
+              : "fixed bottom-4 right-4 h-8 w-8 rounded-full shadow-lg flex items-center justify-center bg-primary hover:bg-primary/90"
+          }
+        >
+          {darkMode ? (
+            <Sun className="h-6 w-6 text-black" />
+          ) : (
+            <Moon className="h-6 w-6 text-white" />
+          )}
+        </Button>
       </div>
     </div>
   );
