@@ -69,9 +69,9 @@ const Summary = () => {
     >
       <div className="max-w-3xl w-full space-y-6">
         <Card
-          className={`mx-auto w-full max-w-2xl transition duration-200 ease-in-out transform shadow-lg hover:scale-105 border ${darkMode ? "border-gray-600 bg-black text-white" : "border-gray-300 bg-white text-gray-800"}`}
+          className={`mx-auto w-full max-w-2xl transition duration-200 ease-in-out transform shadow-lg hover:scale-105 border ${darkMode ? "border-gray-600 bg-black text-white" : "border-gray-700 bg-white text-gray-800"}`}
         >
-          <CardHeader className="p-6 border-b border-gray-200">
+          <CardHeader className="p-6 border-b border-gray-700">
             <CardTitle className="text-2xl font-semibold text-center">
               Course Progress Summary
             </CardTitle>
@@ -128,9 +128,9 @@ const Summary = () => {
         </Card>
 
         <Card
-          className={`mx-auto w-full max-w-2xl transition duration-200 ease-in-out transform shadow-lg hover:scale-105 border ${darkMode ? "border-gray-600 bg-black text-white" : "border-gray-300 bg-white text-gray-800"}`}
+          className={`mx-auto w-full max-w-2xl transition duration-200 ease-in-out transform shadow-lg hover:scale-105 border ${darkMode ? "border-gray-600 bg-black text-white" : "border-gray-700 bg-white text-gray-800"}`}
         >
-          <CardHeader className="p-6 border-b border-gray-200">
+          <CardHeader className="p-6 border-b border-gray-700">
             <CardTitle className="text-2xl font-semibold text-center">
               Most Completed Courses
             </CardTitle>

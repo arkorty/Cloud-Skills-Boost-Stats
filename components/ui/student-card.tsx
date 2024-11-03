@@ -18,7 +18,7 @@ export const StudentCard = ({ student }: { student: Student }) => {
       : 0;
 
   return (
-    <Card className="w-full transition duration-200 ease-in-out transform shadow-lg lg:hover:scale-105 lg:mb-3 border border-gray-400">
+    <Card className="w-full transition duration-200 ease-in-out transform shadow-lg lg:hover:scale-105 lg:mb-3 border border-gray-700">
       <CardHeader className="flex flex-row items-center gap-4">
         <Link href={student.profile_url}>
           <Avatar className="h-16 w-16">
@@ -77,7 +77,7 @@ export const StudentCard = ({ student }: { student: Student }) => {
                 <Badge
                   key={index}
                   variant="secondary"
-                  className="text-xs bg-google-lightBlue text-google-text"
+                  className="text-xs bg-google-blue text-secondary"
                 >
                   {badge}
                 </Badge>

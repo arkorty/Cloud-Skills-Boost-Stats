@@ -93,7 +93,7 @@ export default function Home() {
     <div className="container mx-auto p-4">
       <div className="flex flex-col gap-6">
         <div className="flex flex-col sm:flex-row items-start justify-between gap-4">
-          <div className="w-full text-google-text p-6 rounded-lg shadow-lg border border-gray-400 flex justify-between items-center">
+          <div className="w-full text-google-text p-6 rounded-lg shadow-lg border border-gray-700 flex justify-between items-center">
             <div className="flex items-center">
               <Image
                 src="/logo.png"
