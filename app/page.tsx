@@ -11,7 +11,10 @@ import { ChevronLeft, ChevronRight, Moon, Sun } from "lucide-react";
 export default function Home() {
   const [currentPage, setCurrentPage] = useState(1);
   const [searchQuery, setSearchQuery] = useState("");
-  const [darkMode, setDarkMode] = useState(false);
+  const [darkMode, setDarkMode] = useState(() => {
+    const savedMode = localStorage.getItem("darkMode");
+    return savedMode === "true";
+  });
   const cardsPerPage = 12;
   const students = LoadStudents();
 
@@ -72,16 +75,19 @@ export default function Home() {
   };
 
   const toggleDarkMode = () => {
-    setDarkMode((prevMode) => !prevMode);
+    setDarkMode((prevMode) => {
+      const newMode = !prevMode;
+      localStorage.setItem("darkMode", newMode.toString());
+      return newMode;
+    });
   };
 
   useEffect(() => {
-    // Apply dark mode class to the body element
     document.body.classList.toggle("dark", darkMode);
   }, [darkMode]);
 
   return (
-    <div className="container mx-auto py-4 px-4">
+    <div className="container mx-auto p-4">
       <div className="flex flex-col gap-6">
         <div className="flex flex-col sm:flex-row items-start justify-between gap-4">
           <div className="w-full text-google-text p-6 rounded-lg shadow-lg border border-gray-400 flex justify-between items-center">
