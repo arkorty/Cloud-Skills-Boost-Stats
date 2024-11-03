@@ -115,7 +115,7 @@ const Summary = () => {
                     <Clock
                       className={`h-5 w-5 ${darkMode ? "text-yellow-400" : "text-yellow-600"}`}
                     />
-                    <span className="text-sm font-medium">Incomplete</span>
+                    <span className="text-sm font-medium">In Progress</span>
                   </div>
                   <span className="text-lg font-semibold">
                     {incompletePercentage.toFixed(0)}% ({incompleteCount})
