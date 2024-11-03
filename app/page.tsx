@@ -3,10 +3,11 @@
 import React, { useState, useEffect } from "react";
 import LoadStudents from "./data/load-students";
 import Image from "next/image";
+import Link from "next/link";
 import { Input } from "@/components/ui/input";
 import { StudentCard } from "@/components/ui/student-card";
 import { Button } from "@/components/ui/button";
-import { ChevronLeft, ChevronRight, Moon, Sun } from "lucide-react";
+import { ChevronLeft, ChevronRight, Moon, Sun, LineChart } from "lucide-react";
 
 export default function Home() {
   const [currentPage, setCurrentPage] = useState(1);
@@ -170,20 +171,25 @@ export default function Home() {
           </div>
         )}
 
-        <Button
-          onClick={toggleDarkMode}
-          className={
-            darkMode
-              ? "fixed bottom-4 right-4 h-8 w-8 rounded-full shadow-lg flex items-center justify-center bg-primary hover:bg-primary/90"
-              : "fixed bottom-4 right-4 h-8 w-8 rounded-full shadow-lg flex items-center justify-center bg-primary hover:bg-primary/90"
-          }
-        >
-          {darkMode ? (
-            <Sun className="h-6 w-6 text-black" />
-          ) : (
-            <Moon className="h-6 w-6 text-white" />
-          )}
-        </Button>
+        <div className="fixed bottom-4 right-4 flex gap-2">
+          <Link href="/summary">
+            <Button className="h-8 rounded-full shadow-lg flex items-center justify-center gap-2 bg-primary hover:bg-primary/90 px-4">
+              <LineChart className="h-4 w-4" />
+              <span>Summary</span>
+            </Button>
+          </Link>
+
+          <Button
+            onClick={toggleDarkMode}
+            className="h-8 w-8 rounded-full shadow-lg flex items-center justify-center bg-primary hover:bg-primary/90"
+          >
+            {darkMode ? (
+              <Sun className="h-6 w-6 text-black" />
+            ) : (
+              <Moon className="h-6 w-6 text-white" />
+            )}
+          </Button>
+        </div>
       </div>
     </div>
   );

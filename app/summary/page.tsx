@@ -2,10 +2,19 @@
 
 import React, { useState, useEffect } from "react";
 import LoadStudents from "../data/load-students";
+import Link from "next/link";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
-import { Users, Trophy, GraduationCap, Clock, Moon, Sun } from "lucide-react";
+import {
+  Users,
+  Trophy,
+  GraduationCap,
+  Clock,
+  Moon,
+  Sun,
+  House,
+} from "lucide-react";
 
 const Summary = () => {
   const [darkMode, setDarkMode] = useState(false);
@@ -142,20 +151,25 @@ const Summary = () => {
           </CardContent>
         </Card>
 
-        <Button
-          onClick={toggleDarkMode}
-          className={
-            darkMode
-              ? "fixed bottom-4 right-4 h-8 w-8 rounded-full shadow-lg flex items-center justify-center bg-primary hover:bg-primary/90"
-              : "fixed bottom-4 right-4 h-8 w-8 rounded-full shadow-lg flex items-center justify-center bg-primary hover:bg-primary/90"
-          }
-        >
-          {darkMode ? (
-            <Sun className="h-6 w-6 text-black" />
-          ) : (
-            <Moon className="h-6 w-6 text-white" />
-          )}
-        </Button>
+        <div className="fixed bottom-4 right-4 flex gap-2">
+          <Link href="/">
+            <Button className="h-8 rounded-full shadow-lg flex items-center justify-center gap-2 bg-primary hover:bg-primary/90 px-4">
+              <House className="h-4 w-4" />
+              <span>Home</span>
+            </Button>
+          </Link>
+
+          <Button
+            onClick={toggleDarkMode}
+            className="h-8 w-8 rounded-full shadow-lg flex items-center justify-center bg-primary hover:bg-primary/90"
+          >
+            {darkMode ? (
+              <Sun className="h-6 w-6 text-black" />
+            ) : (
+              <Moon className="h-6 w-6 text-white" />
+            )}
+          </Button>
+        </div>
       </div>
     </div>
   );
