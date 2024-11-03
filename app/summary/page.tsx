@@ -65,7 +65,7 @@ const Summary = () => {
 
   return (
     <div
-      className={`flex justify-center p-6 ${darkMode ? "bg-black" : "bg-white"}`}
+      className={`flex justify-center min-h-screen p-6 ${darkMode ? "bg-black" : "bg-white"}`}
     >
       <div className="max-w-3xl w-full space-y-6">
         <Card
