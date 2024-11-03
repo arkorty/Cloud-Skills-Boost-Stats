@@ -65,11 +65,17 @@ const Summary = () => {
 
   return (
     <div
-      className={`flex justify-center min-h-screen p-6 ${darkMode ? "bg-black" : "bg-white"}`}
+      className={`flex justify-center min-h-screen p-6 ${
+        darkMode ? "bg-black" : "bg-white"
+      }`}
     >
       <div className="max-w-3xl w-full space-y-6">
         <Card
-          className={`mx-auto w-full max-w-2xl transition duration-200 ease-in-out transform shadow-lg hover:scale-105 border ${darkMode ? "border-gray-600 bg-black text-white" : "border-gray-700 bg-white text-gray-800"}`}
+          className={`mx-auto w-full max-w-2xl transition duration-200 ease-in-out transform lg:hover:scale-105 shadow-lg border ${
+            darkMode
+              ? "border-gray-600 bg-black text-white"
+              : "border-gray-700 bg-white text-gray-800"
+          }`}
         >
           <CardHeader className="p-6 border-b border-gray-700">
             <CardTitle className="text-2xl font-semibold text-center">
@@ -128,7 +134,11 @@ const Summary = () => {
         </Card>
 
         <Card
-          className={`mx-auto w-full max-w-2xl transition duration-200 ease-in-out transform shadow-lg hover:scale-105 border ${darkMode ? "border-gray-600 bg-black text-white" : "border-gray-700 bg-white text-gray-800"}`}
+          className={`mx-auto w-full max-w-2xl transition duration-200 ease-in-out transform lg:hover:scale-105 shadow-lg border ${
+            darkMode
+              ? "border-gray-600 bg-black text-white"
+              : "border-gray-700 bg-white text-gray-800"
+          }`}
         >
           <CardHeader className="p-6 border-b border-gray-700">
             <CardTitle className="text-2xl font-semibold text-center">
