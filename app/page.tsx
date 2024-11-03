@@ -11,12 +11,14 @@ import { ChevronLeft, ChevronRight, Moon, Sun } from "lucide-react";
 export default function Home() {
   const [currentPage, setCurrentPage] = useState(1);
   const [searchQuery, setSearchQuery] = useState("");
-  const [darkMode, setDarkMode] = useState(() => {
-    const savedMode = localStorage.getItem("darkMode");
-    return savedMode === "true";
-  });
+  const [darkMode, setDarkMode] = useState(false);
   const cardsPerPage = 12;
   const students = LoadStudents();
+
+  useEffect(() => {
+    const savedMode = window?.localStorage?.getItem("darkMode") === "true";
+    setDarkMode(savedMode);
+  }, []);
 
   const filteredStudents = students.filter((student) =>
     student.name.toLowerCase().includes(searchQuery.toLowerCase())

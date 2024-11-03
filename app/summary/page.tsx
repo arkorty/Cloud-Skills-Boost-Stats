@@ -8,10 +8,13 @@ import { Progress } from "@/components/ui/progress";
 import { Users, Trophy, GraduationCap, Clock, Moon, Sun } from "lucide-react";
 
 const Summary = () => {
-  const [darkMode, setDarkMode] = useState(() => {
-    const savedMode = localStorage.getItem("darkMode");
-    return savedMode === "true";
-  });
+  const [darkMode, setDarkMode] = useState(false);
+
+  useEffect(() => {
+    const savedMode = window?.localStorage?.getItem("darkMode") === "true";
+    setDarkMode(savedMode);
+  }, []);
+
   const students = LoadStudents();
 
   const totalStudents = students.length;
