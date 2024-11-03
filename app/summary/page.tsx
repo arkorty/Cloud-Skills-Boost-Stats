@@ -1,13 +1,14 @@
 "use client";
 
-import React from "react";
+import React, { useState, useEffect } from "react";
 import LoadStudents from "../data/load-students";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
-import { ScrollArea } from "@/components/ui/scroll-area";
-import { Users, Trophy, GraduationCap, Clock } from "lucide-react";
+import { Users, Trophy, GraduationCap, Clock, Moon, Sun } from "lucide-react";
 
 const Summary = () => {
+  const [darkMode, setDarkMode] = useState(false);
   const students = LoadStudents();
 
   const totalStudents = students.length;
@@ -35,71 +36,83 @@ const Summary = () => {
     .sort(([, countA], [, countB]) => countB - countA)
     .slice(0, 5);
 
+  const toggleDarkMode = () => {
+    setDarkMode((prevMode) => !prevMode);
+  };
+
+  useEffect(() => {
+    document.body.classList.toggle("dark", darkMode);
+  }, [darkMode]);
+
   return (
-    <div className="flex justify-center p-6">
+    <div
+      className={`flex justify-center p-6 ${darkMode ? "bg-black" : "bg-white"}`}
+    >
       <div className="max-w-3xl w-full space-y-6">
-        <Card className="mx-auto w-full max-w-2xl transition duration-200 ease-in-out transform shadow-lg hover:scale-105 border border-gray-400 bg-white rounded-lg">
+        <Card
+          className={`mx-auto w-full max-w-2xl transition duration-200 ease-in-out transform shadow-lg hover:scale-105 border ${darkMode ? "border-gray-600 bg-black text-white" : "border-gray-300 bg-white text-gray-800"}`}
+        >
           <CardHeader className="p-6 border-b border-gray-200">
-            <CardTitle className="text-2xl font-semibold text-center text-gray-800">
+            <CardTitle className="text-2xl font-semibold text-center">
               Course Progress Summary
             </CardTitle>
           </CardHeader>
           <CardContent className="p-6 space-y-6">
             <div className="space-y-4">
-              <div className="flex justify-between items-center bg-gray-50 p-4 rounded-lg">
+              <div
+                className={`flex justify-between items-center p-4 rounded-lg ${darkMode ? "border bg-white/10 hover:bg-white/20" : "border border-gray-300 hover:bg-gray-100"}`}
+              >
                 <div className="flex items-center gap-2">
-                  <Users className="h-5 w-5 text-blue-500" />
-                  <span className="text-sm font-medium text-gray-600">
-                    Total Students
-                  </span>
+                  <Users
+                    className={`h-5 w-5 ${darkMode ? "text-blue-400" : "text-blue-600"}`}
+                  />
+                  <span className="text-sm font-medium">Total Students</span>
                 </div>
-                <span className="text-xl font-semibold text-gray-800">
-                  {totalStudents}
-                </span>
+                <span className="text-xl font-semibold">{totalStudents}</span>
               </div>
 
-              <div className="space-y-2 bg-gray-50 p-4 rounded-lg">
+              <div
+                className={`space-y-2 p-4 rounded-lg ${darkMode ? "border bg-white/10 hover:bg-white/20" : "border border-gray-300 hover:bg-gray-100"}`}
+              >
                 <div className="flex justify-between items-center">
                   <div className="flex items-center gap-2">
-                    <GraduationCap className="h-5 w-5 text-green-500" />
-                    <span className="text-sm font-medium text-gray-600">
-                      Completed
-                    </span>
+                    <GraduationCap
+                      className={`h-5 w-5 ${darkMode ? "text-green-400" : "text-green-600"}`}
+                    />
+                    <span className="text-sm font-medium">Completed</span>
                   </div>
-                  <span className="text-lg font-semibold text-gray-800">
+                  <span className="text-lg font-semibold">
                     {completedPercentage.toFixed(0)}% ({completedCount})
                   </span>
                 </div>
-                <Progress
-                  value={completedPercentage}
-                  className="h-2 rounded-full bg-gray-200"
-                />
+                <Progress value={completedPercentage} className="h-2" />
               </div>
 
-              <div className="space-y-2 bg-gray-50 p-4 rounded-lg">
+              <div
+                className={`space-y-2 p-4 rounded-lg ${darkMode ? "border bg-white/10 hover:bg-white/20" : "border border-gray-300 hover:bg-gray-100"}`}
+              >
                 <div className="flex justify-between items-center">
                   <div className="flex items-center gap-2">
-                    <Clock className="h-5 w-5 text-yellow-500" />
-                    <span className="text-sm font-medium text-gray-600">
-                      Incomplete
-                    </span>
+                    <Clock
+                      className={`h-5 w-5 ${darkMode ? "text-yellow-400" : "text-yellow-600"}`}
+                    />
+                    <span className="text-sm font-medium">Incomplete</span>
                   </div>
-                  <span className="text-lg font-semibold text-gray-800">
+                  <span className="text-lg font-semibold">
                     {incompletePercentage.toFixed(0)}% ({incompleteCount})
                   </span>
                 </div>
-                <Progress
-                  value={incompletePercentage}
-                  className="h-2 rounded-full bg-gray-200"
-                />
+                <Progress value={incompletePercentage} className="h-2" />
               </div>
             </div>
           </CardContent>
         </Card>
 
-        <Card className="mx-auto w-full max-w-2xl transition duration-200 ease-in-out transform shadow-lg hover:scale-105 border border-gray-400 bg-white rounded-lg">
+        <Card
+          className={`mx-auto w-full max-w-2xl transition duration-200 ease-in-out transform shadow-lg hover:scale-105 border ${darkMode ? "border-gray-600 bg-black text-white" : "border-gray-300 bg-white text-gray-800"}`}
+        >
           <CardHeader className="p-6 border-b border-gray-200">
-            <CardTitle className="text-2xl font-semibold text-center text-gray-800">
+            <CardTitle className="text-2xl font-semibold text-center">
               Most Completed Courses
             </CardTitle>
           </CardHeader>
@@ -107,21 +120,32 @@ const Summary = () => {
             {mostCompletedCourses.map(([course, count], index) => (
               <div
                 key={index}
-                className="flex items-center justify-between px-4 py-3 mb-2 rounded-lg bg-gray-50 hover:bg-gray-100 transition duration-150"
+                className={`flex items-center justify-between px-4 py-3 mb-2 rounded-lg transition duration-150 ${darkMode ? "border bg-white/10 hover:bg-white/20" : "border border-gray-300 hover:bg-gray-100"}`}
               >
                 <div className="flex items-center gap-3">
                   <Trophy className="text-yellow-500 h-5 w-5" />
-                  <span className="text-md font-medium text-gray-700">
-                    {course}
-                  </span>
+                  <span className="text-md font-medium">{course}</span>
                 </div>
-                <span className="text-sm font-medium text-gray-600">
-                  {count} completions
-                </span>
+                <span className="text-sm font-medium">{count} completions</span>
               </div>
             ))}
           </CardContent>
         </Card>
+
+        <Button
+          onClick={toggleDarkMode}
+          className={
+            darkMode
+              ? "fixed bottom-4 right-4 h-8 w-8 rounded-full shadow-lg flex items-center justify-center bg-primary hover:bg-primary/90"
+              : "fixed bottom-4 right-4 h-8 w-8 rounded-full shadow-lg flex items-center justify-center bg-primary hover:bg-primary/90"
+          }
+        >
+          {darkMode ? (
+            <Sun className="h-6 w-6 text-black" />
+          ) : (
+            <Moon className="h-6 w-6 text-white" />
+          )}
+        </Button>
       </div>
     </div>
   );
