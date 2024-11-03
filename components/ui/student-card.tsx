@@ -74,11 +74,7 @@ export const StudentCard = ({ student }: { student: Student }) => {
           <ScrollArea className="h-48">
             <div className="flex flex-wrap gap-2">
               {student.badges?.map((badge, index) => (
-                <Badge
-                  key={index}
-                  variant="secondary"
-                  className="text-xs bg-google-blue text-secondary"
-                >
+                <Badge key={index} variant="secondary" className="text-xs ">
                   {badge}
                 </Badge>
               )) || (
