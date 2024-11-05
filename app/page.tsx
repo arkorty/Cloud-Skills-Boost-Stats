@@ -5,6 +5,7 @@ import LoadStudents from "./data/load-students";
 import Image from "next/image";
 import Link from "next/link";
 import { Input } from "@/components/ui/input";
+import { CompactCard } from "@/components/ui/compact-card";
 import { StudentCard } from "@/components/ui/student-card";
 import { Button } from "@/components/ui/button";
 import { ChevronLeft, ChevronRight, Moon, Sun, LineChart } from "lucide-react";
@@ -13,12 +14,19 @@ export default function Home() {
   const [currentPage, setCurrentPage] = useState(1);
   const [searchQuery, setSearchQuery] = useState("");
   const [darkMode, setDarkMode] = useState(false);
+  const [isCompact, setIsCompact] = useState(false);
   const cardsPerPage = 12;
   const students = LoadStudents();
 
   useEffect(() => {
     const savedMode = window?.localStorage?.getItem("darkMode") === "true";
     setDarkMode(savedMode);
+  }, []);
+
+
+  useEffect(() => {
+    const savedMode = window?.localStorage?.getItem("isCompact") === "true";
+    setIsCompact(savedMode);
   }, []);
 
   const filteredStudents = students.filter((student) =>
@@ -89,6 +97,14 @@ export default function Home() {
     document.body.classList.toggle("dark", darkMode);
   }, [darkMode]);
 
+  const toggleViewMode = () => {
+    setIsCompact((prevMode) => {
+      const newMode = !prevMode;
+      localStorage.setItem("isCompact", newMode.toString());
+      return newMode;
+    });
+  };
+
   return (
     <div className="container mx-auto min-h-screen p-4">
       <div className="flex flex-col gap-6">
@@ -125,9 +141,13 @@ export default function Home() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
-          {currentCards.map((student) => (
-            <StudentCard key={student.email} student={student} />
-          ))}
+          {currentCards.map((student) =>
+            isCompact ? (
+              <CompactCard key={student.email} student={student} />
+            ) : (
+              <StudentCard key={student.email} student={student} />
+            )
+          )}
         </div>
 
         {totalPages > 1 && (
@@ -172,6 +192,13 @@ export default function Home() {
         )}
 
         <div className="fixed bottom-4 right-4 flex gap-2">
+          <Button
+            onClick={toggleViewMode}
+            className="h-8 rounded-full shadow-lg flex items-center justify-center gap-2 bg-primary hover:bg-primary/90 px-4"
+          >
+            {isCompact ? "Normal" : "Compact"}
+          </Button>
+
           <Link href="/summary">
             <Button className="h-8 rounded-full shadow-lg flex items-center justify-center gap-2 bg-primary hover:bg-primary/90 px-4">
               <LineChart className="h-4 w-4" />
