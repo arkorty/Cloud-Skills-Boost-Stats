@@ -87,7 +87,7 @@ const Summary = () => {
         >
           <CardHeader className="p-6 border-b border-gray-700">
             <CardTitle className="text-2xl font-semibold text-center">
-              Course Progress Summary
+              Progress Summary
             </CardTitle>
           </CardHeader>
           <CardContent className="p-6 space-y-6">
@@ -99,7 +99,7 @@ const Summary = () => {
                   <Users
                     className={`h-5 w-5 ${darkMode ? "text-blue-400" : "text-blue-600"}`}
                   />
-                  <span className="text-sm font-medium">Total Students</span>
+                  <span className="text-sm font-medium">Total Enrolled</span>
                 </div>
                 <span className="text-xl font-semibold">{totalStudents}</span>
               </div>
@@ -168,7 +168,7 @@ const Summary = () => {
         >
           <CardHeader className="p-6 border-b border-gray-700">
             <CardTitle className="text-2xl font-semibold text-center">
-              Most Completed Courses
+              Popular Courses
             </CardTitle>
           </CardHeader>
           <CardContent className="p-6">
