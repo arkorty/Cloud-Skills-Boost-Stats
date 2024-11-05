@@ -14,6 +14,7 @@ import {
   Moon,
   Sun,
   House,
+  CircleSlash
 } from "lucide-react";
 
 const Summary = () => {
@@ -30,12 +31,19 @@ const Summary = () => {
   const completedCount = students.filter(
     (student) => student.incomplete_assignments_count === 0,
   ).length;
-  const incompleteCount = totalStudents - completedCount;
+
+  const noProgressCount = students.filter((student) => student.completed_assignments === null).length;
+
+  const noProgressPercentage =
+    totalStudents > 0 ? (noProgressCount / totalStudents) * 100 : 0;
+
+  const inProgressCount = totalStudents - (completedCount + noProgressCount);
 
   const completedPercentage =
     totalStudents > 0 ? (completedCount / totalStudents) * 100 : 0;
+
   const incompletePercentage =
-    totalStudents > 0 ? (incompleteCount / totalStudents) * 100 : 0;
+    totalStudents > 0 ? (inProgressCount / totalStudents) * 100 : 0;
 
   const badgeCompletionCount: Record<string, number> = {};
 
@@ -124,10 +132,28 @@ const Summary = () => {
                     <span className="text-sm font-medium">In Progress</span>
                   </div>
                   <span className="text-lg font-semibold">
-                    {incompletePercentage.toFixed(0)}% ({incompleteCount})
+                    {incompletePercentage.toFixed(0)}% ({inProgressCount})
                   </span>
                 </div>
                 <Progress value={incompletePercentage} className="h-2" />
+              </div>
+
+
+              <div
+                className={`space-y-2 p-4 rounded-lg ${darkMode ? "border bg-white/10 hover:bg-white/20" : "border border-gray-300 hover:bg-gray-100"}`}
+              >
+                <div className="flex justify-between items-center">
+                  <div className="flex items-center gap-2">
+                    <CircleSlash
+                      className={`h-5 w-5 ${darkMode ? "text-red-400" : "text-red-600"}`}
+                    />
+                    <span className="text-sm font-medium">No Progress</span>
+                  </div>
+                  <span className="text-lg font-semibold">
+                    {noProgressPercentage.toFixed(0)}% ({noProgressCount})
+                  </span>
+                </div>
+                <Progress value={noProgressPercentage} className="h-2" />
               </div>
             </div>
           </CardContent>
