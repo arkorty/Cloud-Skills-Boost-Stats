@@ -8,7 +8,14 @@ import { Input } from "@/components/ui/input";
 import { CompactCard } from "@/components/ui/compact-card";
 import { StudentCard } from "@/components/ui/student-card";
 import { Button } from "@/components/ui/button";
-import { ChevronLeft, ChevronRight, Moon, Sun, LineChart } from "lucide-react";
+import {
+  ChevronLeft,
+  ChevronRight,
+  Moon,
+  Sun,
+  LineChart,
+  PanelsTopLeft,
+} from "lucide-react";
 
 export default function Home() {
   const [currentPage, setCurrentPage] = useState(1);
@@ -22,7 +29,6 @@ export default function Home() {
     const savedMode = window?.localStorage?.getItem("darkMode") === "true";
     setDarkMode(savedMode);
   }, []);
-
 
   useEffect(() => {
     const savedMode = window?.localStorage?.getItem("isCompact") === "true";
@@ -191,18 +197,17 @@ export default function Home() {
           </div>
         )}
 
-        <div className="fixed bottom-4 right-4 flex gap-2">
+        <div className="fixed bottom-4 right-4 flex flex-col gap-2">
           <Button
             onClick={toggleViewMode}
-            className="h-8 rounded-full shadow-lg flex items-center justify-center gap-2 bg-primary hover:bg-primary/90 px-4"
+            className="h-8 w-8 rounded-full shadow-lg flex items-center justify-center gap-2 bg-primary hover:bg-primary/90 px-4"
           >
-            {isCompact ? "Normal" : "Compact"}
+            <PanelsTopLeft></PanelsTopLeft>
           </Button>
 
           <Link href="/summary">
-            <Button className="h-8 rounded-full shadow-lg flex items-center justify-center gap-2 bg-primary hover:bg-primary/90 px-4">
+            <Button className="h-8 w-8 rounded-full shadow-lg flex items-center justify-center gap-2 bg-primary hover:bg-primary/90 px-4">
               <LineChart className="h-4 w-4" />
-              <span>Summary</span>
             </Button>
           </Link>
 

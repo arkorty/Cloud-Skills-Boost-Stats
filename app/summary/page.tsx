@@ -138,7 +138,6 @@ const Summary = () => {
                 <Progress value={incompletePercentage} className="h-2" />
               </div>
 
-
               <div
                 className={`space-y-2 p-4 rounded-lg ${darkMode ? "border bg-white/10 hover:bg-white/20" : "border border-gray-300 hover:bg-gray-100"}`}
               >
@@ -187,11 +186,10 @@ const Summary = () => {
           </CardContent>
         </Card>
 
-        <div className="fixed bottom-4 right-4 flex gap-2">
+        <div className="fixed bottom-4 right-4 flex flex-col gap-2">
           <Link href="/">
-            <Button className="h-8 rounded-full shadow-lg flex items-center justify-center gap-2 bg-primary hover:bg-primary/90 px-4">
+            <Button className="h-8 w-8 rounded-full shadow-lg flex items-center justify-center gap-2 bg-primary hover:bg-primary/90 px-4">
               <House className="h-4 w-4" />
-              <span>Home</span>
             </Button>
           </Link>
 
