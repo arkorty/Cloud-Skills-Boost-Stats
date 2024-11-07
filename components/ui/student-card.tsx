@@ -6,7 +6,7 @@ import { Progress } from "@/components/ui/progress";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Avatar } from "@/components/ui/avatar";
 import { ScrollArea } from "@/components/ui/scroll-area";
-import { GraduationCap, Mail, Trophy, Clock } from "lucide-react";
+import { GraduationCap, Mail, Trophy, CircleSlash } from "lucide-react";
 import { Student } from "@/app/types/student";
 
 export const StudentCard = ({ student }: { student: Student }) => {
@@ -72,12 +72,21 @@ export const StudentCard = ({ student }: { student: Student }) => {
             <h4 className="font-medium">Earned Badges</h4>
           </div>
           <ScrollArea className="h-48">
-            <div className="flex flex-wrap gap-2">
-              {student.badges?.map((badge, index) => (
-                <Badge key={index} variant="secondary" className="text-xs ">
-                  {badge}
-                </Badge>
-              )) || (
+            <div className="flex flex-col">
+              {(student.badges?.length ?? 0) > 0 ? (
+                student.badges?.map((badge, index) => (
+                  <div
+                    key={index}
+                    className={`py-1 text-sm ${
+                      index < (student.badges?.length ?? 1) - 1
+                        ? "border-b border-gray-300"
+                        : ""
+                    }`}
+                  >
+                    {badge}
+                  </div>
+                ))
+              ) : (
                 <span className="text-sm text-muted-foreground">
                   No badges earned yet
                 </span>
@@ -86,23 +95,23 @@ export const StudentCard = ({ student }: { student: Student }) => {
           </ScrollArea>
         </div>
 
-        <Tabs defaultValue="completed">
+        <Tabs defaultValue="complete">
           <TabsList className="grid w-full grid-cols-2">
-            <TabsTrigger value="completed">
+            <TabsTrigger value="complete">
               <div className="flex items-center gap-2">
                 <GraduationCap className="h-4 w-4 text-google-green" />
-                Completed
+                Complete
               </div>
             </TabsTrigger>
             <TabsTrigger value="in-progress">
               <div className="flex items-center gap-2">
-                <Clock className="h-4 w-4 text-yellow-500" />
-                In Progress
+                <CircleSlash className="h-4 w-4 text-red-500" />
+                Incomplete
               </div>
             </TabsTrigger>
           </TabsList>
 
-          <TabsContent value="completed" className="mt-4">
+          <TabsContent value="complete" className="mt-4">
             <div className="space-y-2">
               <ScrollArea className="h-48">
                 {(student.completed_assignments?.length ?? 0) > 0 ? (

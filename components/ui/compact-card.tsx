@@ -31,12 +31,12 @@ export const CompactCard = ({ student }: { student: Student }) => {
         </Link>
         <div className="flex-1 min-w-0">
           <div className="flex justify-center mb-2">
-          <Link href={student.profile_url}>
-            <CardTitle className="text-lg">{student.name}</CardTitle>
-          </Link>
+            <Link href={student.profile_url}>
+              <CardTitle className="text-2xl">{student.name}</CardTitle>
+            </Link>
           </div>
-          <div className="flex justify-center gap-1 text-xs text-muted-foreground overflow-hidden">
-            <Mail className="h-3 w-3 flex-shrink-0" />
+          <div className="flex items-center gap-2 text-sm text-muted-foreground mt-1 overflow-hidden">
+            <Mail className="h-4 w-4 flex-shrink-0" />
             <span className="truncate">{student.email}</span>
           </div>
         </div>
@@ -45,7 +45,7 @@ export const CompactCard = ({ student }: { student: Student }) => {
       <CardContent>
         <div className="mb-2">
           <div className="flex justify-between text-xs text-muted-foreground mb-2">
-            <span>Progress</span>
+            <span>Course Progress</span>
             <span>{completionPercentage.toFixed(0)}%</span>
           </div>
           <Progress value={completionPercentage} className="h-2" />

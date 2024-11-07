@@ -8,6 +8,7 @@ import { Input } from "@/components/ui/input";
 import { CompactCard } from "@/components/ui/compact-card";
 import { StudentCard } from "@/components/ui/student-card";
 import { Button } from "@/components/ui/button";
+import { ChevronLeft, ChevronRight, Moon, Sun, LineChart } from "lucide-react";
 import {
   ChevronLeft,
   ChevronRight,
