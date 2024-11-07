@@ -35,7 +35,7 @@ export const CompactCard = ({ student }: { student: Student }) => {
               <CardTitle className="text-2xl">{student.name}</CardTitle>
             </Link>
           </div>
-          <div className="flex items-center gap-2 text-sm text-muted-foreground mt-1 overflow-hidden">
+          <div className="flex items-center justify-center gap-2 text-sm text-muted-foreground mt-1 overflow-hidden">
             <Mail className="h-4 w-4 flex-shrink-0" />
             <span className="truncate">{student.email}</span>
           </div>
