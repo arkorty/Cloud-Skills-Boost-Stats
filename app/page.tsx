@@ -142,7 +142,7 @@ export default function Home() {
                     className="text-primary bg-secondary"
                   />
                 </HoverCardTrigger>
-                <HoverCardContent>p: to filter with progress</HoverCardContent>
+                <HoverCardContent>p: to filter by progress</HoverCardContent>
               </HoverCard>
               <p className="text-sm text-primary/80 mr-1">
                 Showing {indexOfFirstCard + 1}-
