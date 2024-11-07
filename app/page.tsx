@@ -10,13 +10,10 @@ import { StudentCard } from "@/components/ui/student-card";
 import { Button } from "@/components/ui/button";
 import { ChevronLeft, ChevronRight, Moon, Sun, LineChart } from "lucide-react";
 import {
-  ChevronLeft,
-  ChevronRight,
-  Moon,
-  Sun,
-  LineChart,
-  PanelsTopLeft,
-} from "lucide-react";
+  HoverCard,
+  HoverCardContent,
+  HoverCardTrigger,
+} from "@/components/ui/hover-card";
 
 export default function Home() {
   const [currentPage, setCurrentPage] = useState(1);
@@ -32,13 +29,25 @@ export default function Home() {
   }, []);
 
   useEffect(() => {
-    const savedMode = window?.localStorage?.getItem("isCompact") === "true";
-    setIsCompact(savedMode);
+    const userAgent = typeof window !== "undefined" ? navigator.userAgent : "";
+    const mobileRegex =
+      /Mobi|Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i;
+    setIsMobile(mobileRegex.test(userAgent));
   }, []);
 
-  const filteredStudents = students.filter((student) =>
-    student.name.toLowerCase().includes(searchQuery.toLowerCase())
-  );
+  const filteredStudents = students.filter((student) => {
+    if (searchQuery.toLowerCase().startsWith("p:")) {
+      const progressQuery = parseFloat(searchQuery.slice(2).trim());
+      const totalAssignments =
+        student.incomplete_assignments_count +
+        student.completed_assignments_count;
+      const progressPercentage =
+        (student.completed_assignments_count / totalAssignments) * 100;
+      return progressPercentage.toFixed(2).includes(progressQuery.toString());
+    } else {
+      return student.name.toLowerCase().includes(searchQuery.toLowerCase());
+    }
+  });
 
   const totalPages = Math.ceil(filteredStudents.length / cardsPerPage);
 
@@ -122,14 +131,19 @@ export default function Home() {
               </h1>
             </div>
             <div className="flex flex-col items-end space-y-2">
-              <Input
-                id="student-search"
-                type="text"
-                placeholder="Search for a student..."
-                value={searchQuery}
-                onChange={handleSearchChange}
-                className="text-primary bg-secondary"
-              />
+              <HoverCard>
+                <HoverCardTrigger>
+                  <Input
+                    id="student-search"
+                    type="text"
+                    placeholder="Search for a student..."
+                    value={searchQuery}
+                    onChange={handleSearchChange}
+                    className="text-primary bg-secondary"
+                  />
+                </HoverCardTrigger>
+                <HoverCardContent>p: to filter with progress</HoverCardContent>
+              </HoverCard>
               <p className="text-sm text-primary/80 mr-1">
                 Showing {indexOfFirstCard + 1}-
                 {Math.min(indexOfLastCard, filteredStudents.length)} of{" "}
