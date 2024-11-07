@@ -22,7 +22,7 @@ export default function Home() {
   const [currentPage, setCurrentPage] = useState(1);
   const [searchQuery, setSearchQuery] = useState("");
   const [darkMode, setDarkMode] = useState(false);
-  const [isCompact, setIsCompact] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
   const cardsPerPage = 12;
   const students = LoadStudents();
 
@@ -104,14 +104,6 @@ export default function Home() {
     document.body.classList.toggle("dark", darkMode);
   }, [darkMode]);
 
-  const toggleViewMode = () => {
-    setIsCompact((prevMode) => {
-      const newMode = !prevMode;
-      localStorage.setItem("isCompact", newMode.toString());
-      return newMode;
-    });
-  };
-
   return (
     <div className="container mx-auto min-h-screen p-4">
       <div className="flex flex-col gap-6">
@@ -149,7 +141,7 @@ export default function Home() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
           {currentCards.map((student) =>
-            isCompact ? (
+            isMobile ? (
               <CompactCard key={student.email} student={student} />
             ) : (
               <StudentCard key={student.email} student={student} />
@@ -199,13 +191,6 @@ export default function Home() {
         )}
 
         <div className="fixed bottom-4 right-4 flex flex-col gap-2">
-          <Button
-            onClick={toggleViewMode}
-            className="h-8 w-8 rounded-full shadow-lg flex items-center justify-center gap-2 bg-primary hover:bg-primary/90 px-4"
-          >
-            <PanelsTopLeft></PanelsTopLeft>
-          </Button>
-
           <Link href="/summary">
             <Button className="h-8 w-8 rounded-full shadow-lg flex items-center justify-center gap-2 bg-primary hover:bg-primary/90 px-4">
               <LineChart className="h-4 w-4" />
