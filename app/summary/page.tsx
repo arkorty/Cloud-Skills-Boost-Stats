@@ -14,7 +14,7 @@ import {
   Moon,
   Sun,
   House,
-  CircleSlash
+  CircleSlash,
 } from "lucide-react";
 
 const Summary = () => {
@@ -29,10 +29,12 @@ const Summary = () => {
 
   const totalStudents = students.length;
   const completedCount = students.filter(
-    (student) => student.incomplete_assignments_count === 0,
+    (student) => student.incomplete_assignments_count === 0
   ).length;
 
-  const noProgressCount = students.filter((student) => student.completed_assignments === null).length;
+  const noProgressCount = students.filter(
+    (student) => student.completed_assignments === null
+  ).length;
 
   const noProgressPercentage =
     totalStudents > 0 ? (noProgressCount / totalStudents) * 100 : 0;
@@ -57,7 +59,7 @@ const Summary = () => {
 
   const mostCompletedCourses = Object.entries(badgeCompletionCount)
     .sort(([, countA], [, countB]) => countB - countA)
-    .slice(0, 5);
+    .slice(0, 10);
 
   const toggleDarkMode = () => {
     setDarkMode((prevMode) => {
@@ -85,19 +87,25 @@ const Summary = () => {
               : "border-gray-700 bg-white text-gray-800"
           }`}
         >
-          <CardHeader className="p-6 border-b border-gray-700">
+          <CardHeader className="p-4 border-b border-gray-700">
             <CardTitle className="text-2xl font-semibold text-center">
               Progress Summary
             </CardTitle>
           </CardHeader>
-          <CardContent className="p-6 space-y-6">
-            <div className="space-y-4">
+          <CardContent className="p-4">
+            <div className="space-y-2">
               <div
-                className={`flex justify-between items-center p-4 rounded-lg ${darkMode ? "border bg-white/10 hover:bg-white/20" : "border border-gray-300 hover:bg-gray-100"}`}
+                className={`flex justify-between items-center p-4 rounded-lg ${
+                  darkMode
+                    ? "border bg-white/10 hover:bg-white/20"
+                    : "border border-gray-300 hover:bg-gray-100"
+                }`}
               >
                 <div className="flex items-center gap-2">
                   <Users
-                    className={`h-5 w-5 ${darkMode ? "text-blue-400" : "text-blue-600"}`}
+                    className={`h-5 w-5 ${
+                      darkMode ? "text-blue-400" : "text-blue-600"
+                    }`}
                   />
                   <span className="text-sm font-medium">Total Enrolled</span>
                 </div>
@@ -105,14 +113,20 @@ const Summary = () => {
               </div>
 
               <div
-                className={`space-y-2 p-4 rounded-lg ${darkMode ? "border bg-white/10 hover:bg-white/20" : "border border-gray-300 hover:bg-gray-100"}`}
+                className={`space-y-2 p-4 rounded-lg ${
+                  darkMode
+                    ? "border bg-white/10 hover:bg-white/20"
+                    : "border border-gray-300 hover:bg-gray-100"
+                }`}
               >
                 <div className="flex justify-between items-center">
                   <div className="flex items-center gap-2">
                     <GraduationCap
-                      className={`h-5 w-5 ${darkMode ? "text-green-400" : "text-green-600"}`}
+                      className={`h-5 w-5 ${
+                        darkMode ? "text-green-400" : "text-green-600"
+                      }`}
                     />
-                    <span className="text-sm font-medium">Completed</span>
+                    <span className="text-sm font-medium">Complete</span>
                   </div>
                   <span className="text-lg font-semibold">
                     {completedPercentage.toFixed(0)}% ({completedCount})
@@ -122,12 +136,18 @@ const Summary = () => {
               </div>
 
               <div
-                className={`space-y-2 p-4 rounded-lg ${darkMode ? "border bg-white/10 hover:bg-white/20" : "border border-gray-300 hover:bg-gray-100"}`}
+                className={`space-y-2 p-4 rounded-lg ${
+                  darkMode
+                    ? "border bg-white/10 hover:bg-white/20"
+                    : "border border-gray-300 hover:bg-gray-100"
+                }`}
               >
                 <div className="flex justify-between items-center">
                   <div className="flex items-center gap-2">
                     <Clock
-                      className={`h-5 w-5 ${darkMode ? "text-yellow-400" : "text-yellow-600"}`}
+                      className={`h-5 w-5 ${
+                        darkMode ? "text-yellow-400" : "text-yellow-600"
+                      }`}
                     />
                     <span className="text-sm font-medium">In Progress</span>
                   </div>
@@ -139,14 +159,20 @@ const Summary = () => {
               </div>
 
               <div
-                className={`space-y-2 p-4 rounded-lg ${darkMode ? "border bg-white/10 hover:bg-white/20" : "border border-gray-300 hover:bg-gray-100"}`}
+                className={`space-y-2 p-4 rounded-lg ${
+                  darkMode
+                    ? "border bg-white/10 hover:bg-white/20"
+                    : "border border-gray-300 hover:bg-gray-100"
+                }`}
               >
                 <div className="flex justify-between items-center">
                   <div className="flex items-center gap-2">
                     <CircleSlash
-                      className={`h-5 w-5 ${darkMode ? "text-red-400" : "text-red-600"}`}
+                      className={`h-5 w-5 ${
+                        darkMode ? "text-red-400" : "text-red-600"
+                      }`}
                     />
-                    <span className="text-sm font-medium">No Progress</span>
+                    <span className="text-sm font-medium">Incomplete</span>
                   </div>
                   <span className="text-lg font-semibold">
                     {noProgressPercentage.toFixed(0)}% ({noProgressCount})
@@ -165,20 +191,24 @@ const Summary = () => {
               : "border-gray-700 bg-white text-gray-800"
           }`}
         >
-          <CardHeader className="p-6 border-b border-gray-700">
+          <CardHeader className="p-4 border-b border-gray-700">
             <CardTitle className="text-2xl font-semibold text-center">
               Popular Courses
             </CardTitle>
           </CardHeader>
-          <CardContent className="p-6">
+          <CardContent className="p-4">
             {mostCompletedCourses.map(([course, count], index) => (
               <div
                 key={index}
-                className={`flex items-center justify-between px-4 py-3 mb-2 rounded-lg transition duration-150 ${darkMode ? "border bg-white/10 hover:bg-white/20" : "border border-gray-300 hover:bg-gray-100"}`}
+                className={`flex items-center justify-between px-4 py-3 mb-2 rounded-lg transition duration-150 ${
+                  darkMode
+                    ? "border bg-white/10 hover:bg-white/20"
+                    : "border border-gray-300 hover:bg-gray-100"
+                }`}
               >
-                <div className="flex items-center gap-3">
+                <div className="flex items-center gap-2">
                   <Trophy className="text-yellow-500 h-5 w-5" />
-                  <span className="text-md font-medium">{course}</span>
+                  <span className="text-sm font-medium">{course}</span>
                 </div>
                 <span className="text-sm font-medium">{count} completions</span>
               </div>
