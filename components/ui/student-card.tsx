@@ -10,8 +10,7 @@ import { GraduationCap, Mail, Trophy, CircleSlash } from "lucide-react";
 import { Student } from "@/app/types/student";
 
 export const StudentCard = ({ student }: { student: Student }) => {
-  const totalAssignments =
-    student.incomplete_assignments_count + student.completed_assignments_count;
+  const totalAssignments = 16;
   const completionPercentage =
     totalAssignments > 0
       ? (student.completed_assignments_count / totalAssignments) * 100

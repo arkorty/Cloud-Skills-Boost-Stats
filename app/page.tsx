@@ -38,9 +38,7 @@ export default function Home() {
   const filteredStudents = students.filter((student) => {
     if (searchQuery.toLowerCase().startsWith("p:")) {
       const progressQuery = parseFloat(searchQuery.slice(2).trim());
-      const totalAssignments =
-        student.incomplete_assignments_count +
-        student.completed_assignments_count;
+      const totalAssignments = 16;
       const progressPercentage =
         (student.completed_assignments_count / totalAssignments) * 100;
       return progressPercentage.toFixed(2).includes(progressQuery.toString());
@@ -55,7 +53,7 @@ export default function Home() {
   const indexOfFirstCard = indexOfLastCard - cardsPerPage;
   const currentCards = filteredStudents.slice(
     indexOfFirstCard,
-    indexOfLastCard
+    indexOfLastCard,
   );
 
   const handlePageChange = (pageNumber: number) => {
@@ -159,7 +157,7 @@ export default function Home() {
               <CompactCard key={student.email} student={student} />
             ) : (
               <StudentCard key={student.email} student={student} />
-            )
+            ),
           )}
         </div>
 
