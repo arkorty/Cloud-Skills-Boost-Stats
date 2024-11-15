@@ -28,12 +28,18 @@ const Summary = () => {
   const students = LoadStudents();
 
   const totalStudents = students.length;
+
   const completedCount = students.filter(
-    (student) => student.incomplete_assignments_count === 0
+    (student) =>
+      student.completed_assignments_count === 16 &&
+      (student.completed_assignments?.includes(
+        "Level 3: Google Cloud Adventures",
+      ) ||
+        student.completed_assignments?.includes("Diwali in The Arcade")),
   ).length;
 
   const noProgressCount = students.filter(
-    (student) => student.completed_assignments === null
+    (student) => student.completed_assignments === null,
   ).length;
 
   const noProgressPercentage =
